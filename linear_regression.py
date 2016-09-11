@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 
-import csv
 import numpy as np
 
 # Data variables
-DATA_PATH = 'USCensus1990_100.data.txt'
+DATA_PATH = 'data/USCensus1990_100.data.txt'
 DATA_ROWS = 100
 AGE_COLUMN = 1
 
