@@ -23,10 +23,10 @@ def create_nn_layers(layer_sizes):
     return layers
 
 def feed_forward(x, layers):
-    acc = x[np.newaxis].T
+    acc = [x[np.newaxis].T]
 
     for l in layers:
-        acc = l.dot(acc)
+        acc.append(l.dot(acc[-1]))
 
     return acc
 
