@@ -4,7 +4,7 @@ import numpy as np
 import census_data
 
 # Hyperparameters
-ALPHA = 0.0001
+LEARNING_RATE = 0.0001
 TRAINING_PERC = 0.75
 ITERATIONS = 100000
 
@@ -33,12 +33,11 @@ def cost(x, y_real, w):
 
     return (1 / (2 * m)) * np.sum(np.power(y_est - y_real, 2))
 
-
 def gradient_desc(x, y_real, w):
     """Perform a single step of gradient descent and return the new weights"""
     y_est = eval(x, w)
     m = x.shape[0]
-    const = ALPHA * (1/m)
+    const = LEARNING_RATE * (1/m)
     inner_loop = x.T * (y_est - y_real)
     change = np.sum(np.multiply(const, inner_loop), 1).T
     
