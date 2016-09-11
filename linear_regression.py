@@ -22,6 +22,8 @@ def main():
         print("Training set cost: %0.4f, Test set cost: %0.4f" \
                 % (cost(x, y_real, w), cost(testing_x, testing_y, w)))
 
+    print("Final weights: %s" % w)
+
 def eval(x, w):
     """Evaluate the prediction given data (x) and weights (w)"""
     return np.dot(x, w)
