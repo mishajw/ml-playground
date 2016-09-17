@@ -63,6 +63,9 @@ def feed_forward(x, layers):
 
     return acc
 
+def back_propogate(output, layers):
+    pass
+
 if __name__ == "__main__":
     main()
 
