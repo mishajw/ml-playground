@@ -31,6 +31,14 @@ class Layer:
 
         self.neurons = [Neuron() for i in range(bs.size)]
 
+    @property
+    def indices(self):
+        return range(len(self.neurons))
+
+    @property
+    def rev_indices(self):
+        reversed(self.indices)
+
 def create_nn_layers(layer_sizes):
     layers = []
     
@@ -52,7 +60,7 @@ def feed_forward(x, layers):
 
         layer_output = []
 
-        for i in range(len(l.neurons)):
+        for i in l.indices:
             neuron = l.neurons[i]
             weights = l.ws[i]
 
