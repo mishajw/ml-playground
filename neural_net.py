@@ -22,7 +22,7 @@ class Neuron:
         else:
             return self.xs * dl
 
-class LayerWeights:
+class Layer:
     def __init__(self, ws, bs):
         self.ws = ws;
         self.bs = bs;
@@ -38,7 +38,7 @@ def create_nn_layers(layer_sizes):
         width = layer_sizes[i]
         height = layer_sizes[i+1]
         
-        layers.append(LayerWeights( \
+        layers.append(Layer( \
                 np.random.rand(height, width), \
                 np.random.rand(height) \
         ))
