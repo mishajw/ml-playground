@@ -6,10 +6,30 @@ def main():
     x1 = np.array([1,2,3,4,5,6,7,8,9,0])
 
     layers = create_nn_layers([10, 5, 3, 1])
-    print([l.shape for l in layers])
 
     results = feed_forward(x1, layers)
     print(results)
+
+class Neuron:
+    def forward(self, xs, ws):
+        self.xs = xs;
+        self.output = xs * ws
+        return np.max(np.sum(self.output), 0);
+
+    def backward(self, dl):
+        if self.output <= 0:
+            return np.zeros(self.xs.shape)
+        else:
+            return self.xs * dl
+
+class LayerWeights:
+    def __init__(self, ws, bs):
+        self.ws = ws;
+        self.bs = bs;
+
+        assert bs.size == ws.shape[0]
+
+        self.neurons = [Neuron() for i in range(bs.size)]
 
 def create_nn_layers(layer_sizes):
     layers = []
@@ -18,15 +38,31 @@ def create_nn_layers(layer_sizes):
         width = layer_sizes[i]
         height = layer_sizes[i+1]
         
-        layers.append(np.random.rand(height, width))
+        layers.append(LayerWeights( \
+                np.random.rand(height, width), \
+                np.random.rand(height) \
+        ))
 
     return layers
 
 def feed_forward(x, layers):
-    acc = [x[np.newaxis].T]
+    acc = x[np.newaxis].T
 
     for l in layers:
-        acc.append(l.dot(acc[-1]))
+
+        layer_output = []
+
+        for i in range(len(l.neurons)):
+            neuron = l.neurons[i]
+            weights = l.ws[i]
+
+            print("---")
+            print(weights)
+
+            neuron_output = neuron.forward(weights, acc)
+            layer_output.append(neuron_output)
+
+        acc = layer_output
 
     return acc
 
