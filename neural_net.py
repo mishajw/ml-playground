@@ -56,9 +56,6 @@ def feed_forward(x, layers):
             neuron = l.neurons[i]
             weights = l.ws[i]
 
-            print("---")
-            print(weights)
-
             neuron_output = neuron.forward(weights, acc)
             layer_output.append(neuron_output)
 
