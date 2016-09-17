@@ -35,10 +35,6 @@ class Layer:
     def indices(self):
         return range(len(self.neurons))
 
-    @property
-    def rev_indices(self):
-        reversed(self.indices)
-
 def create_nn_layers(layer_sizes):
     layers = []
     
